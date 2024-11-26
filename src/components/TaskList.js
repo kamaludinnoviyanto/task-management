@@ -1,37 +1,63 @@
 import React, { useState } from 'react';
 
-// Komponen untuk menampilkan daftar tugas
-const TaskList = () => {
-  // State untuk menyimpan daftar tugas
-  const [tasks, setTasks] = useState([]);
-  const [taskInput, setTaskInput] = useState("");
+const TaskList = ({ tasks, onDeleteTask, onEditTask }) => {
+  const [editTaskId, setEditTaskId] = useState(null);
+  const [editTaskName, setEditTaskName] = useState('');
 
-  // Fungsi untuk menambahkan tugas baru
-  const addTask = () => {
-    if (taskInput !== "") {
-      setTasks([...tasks, taskInput]);
-      setTaskInput(""); // Clear input setelah menambahkan tugas
-    }
+  const handleEditClick = (task) => {
+    setEditTaskId(task.id);
+    setEditTaskName(task.name);
+  };
+
+  const handleSaveClick = () => {
+    onEditTask(editTaskId, editTaskName);
+    setEditTaskId(null);
+    setEditTaskName('');
   };
 
   return (
-    <div>
-      <h2>Task List</h2>
-      {/* Input untuk menambah tugas */}
-      <input
-        type="text"
-        value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}
-        placeholder="Add a new task"
-      />
-      <button onClick={addTask}>Add Task</button>
+    <div className="space-y-4">
+      {tasks.map((task) => (
+        <div
+          key={task.id}
+          className="flex justify-between items-center p-4 bg-white shadow-md rounded-md"
+        >
+          {editTaskId === task.id ? (
+            <input
+              type="text"
+              value={editTaskName}
+              onChange={(e) => setEditTaskName(e.target.value)}
+              className="border rounded-md px-2 py-1 w-full mr-2"
+            />
+          ) : (
+            <span className="text-lg">{task.name}</span>
+          )}
 
-      {/* Daftar tugas */}
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task}</li>
-        ))}
-      </ul>
+          {editTaskId === task.id ? (
+            <button
+              onClick={handleSaveClick}
+              className="bg-green-500 text-white px-4 py-2 rounded-md"
+            >
+              Save
+            </button>
+          ) : (
+            <div className="flex space-x-2">
+              <button
+                onClick={() => handleEditClick(task)}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => onDeleteTask(task.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded-md"
+              >
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };

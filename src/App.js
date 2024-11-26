@@ -1,14 +1,42 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
+import Header from './components/Header';
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const handleAddTask = (taskName) => {
+    const newTask = { id: tasks.length + 1, name: taskName };
+    setTasks([...tasks, newTask]);
+  };
+
+  const handleDeleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
+  const handleEditTask = (taskId, newTaskName) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, name: newTaskName } : task
+      )
+    );
+  };
+
   return (
-    <div className="App">
-      <h1>Task Management App</h1>
-      <TaskList />
+    <div>
+      <Header />
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-4">Task Management</h1>
+        <AddTask onAddTask={handleAddTask} />
+        <TaskList
+          tasks={tasks}
+          onDeleteTask={handleDeleteTask}
+          onEditTask={handleEditTask}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
