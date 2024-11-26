@@ -27,7 +27,7 @@ const App = () => {
     <div>
       <Header />
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Task Management</h1>
+        <h1 className="text-2xl font-bold mb-4">Task</h1>
         <AddTask onAddTask={handleAddTask} />
         <TaskList
           tasks={tasks}
