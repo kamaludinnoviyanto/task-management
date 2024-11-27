@@ -1,3 +1,229 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Reset Gaya Dasar */
+body, h1, p, input, button, textarea {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gaya Umum */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+/* Kelas untuk input dan textarea */
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb; /* abu-abu terang */
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #60a5fa; /* biru terang */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); /* efek focus */
+}
+
+/* Kelas untuk tombol */
+button {
+    padding: 12px 24px;
+    background-color: #3b82f6; /* biru */
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2563eb; /* biru lebih gelap */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* efek focus tombol */
+}
+
+/* Kontainer Utama */
+.app-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+/* Formulir Tambah Tugas */
+.add-task {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-task input, .add-task textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.add-task button {
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-task button:hover {
+  background-color: #2980b9;
+}
+
+/* Daftar Tugas */
+/* Tambahkan ke index.css atau file CSS lain yang digunakan */
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.task-details {
+  flex-grow: 1;
+}
+
+.task-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6;
+}
+
+.bg-red-500 {
+  background-color: #ef4444;
+}
+
+.bg-blue-500:hover {
+  background-color: #2563eb;
+}
+
+.bg-red-500:hover {
+  background-color: #dc2626;
+}
+
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+/* Daftar Tugas */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #f4f4f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Detail Tugas */
+.task-details {
+  max-width: 80%;
+}
+
+.task-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.task-desc {
+  font-size: 0.9rem;
+  color: #666;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+/* Tombol Delete */
+.delete-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Media query untuk layar kecil */
+@media (max-width: 600px) {
+  .task-list-item {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .task-actions {
+      margin-top: 1rem;
+      width: 100%;
+  }
+
+  .task-actions button {
+      width: 100%;
+      margin-bottom: 0.5rem;
+  }
+}

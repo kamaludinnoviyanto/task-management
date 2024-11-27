@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const AddTask = ({ onAddTask }) => {
-  const [taskName, setTaskName] = useState('');
+const AddTask = ({ onAdd }) => {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
-  const handleInputChange = (e) => {
-    setTaskName(e.target.value);
-  };
+    const handleAddClick = () => {
+        if (!title || !description) {
+            alert("Judul dan deskripsi tidak boleh kosong!");
+            return;
+        }
+        // Mengirim data tugas ke App melalui onAdd
+        onAdd({ title, description });
+        setTitle("");  // Reset input title setelah add
+        setDescription("");  // Reset input description setelah add
+    };
 
-  const handleAddClick = () => {
-    if (taskName) {
-      onAddTask(taskName);
-      setTaskName(''); // Clear input field after adding task
-    }
-  };
-
-  return (
-    <div>
-      <input 
-        type="text" 
-        value={taskName} 
-        onChange={handleInputChange} 
-        placeholder="Enter task name" 
-      />
-      <button onClick={handleAddClick}>Add Task</button>
-    </div>
-  );
+    return (
+        <div className="add-task">
+            <input
+                type="text"
+                placeholder="Judul Tugas"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+                placeholder="Deskripsi Tugas"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <button onClick={handleAddClick}>Tambah Tugas</button>
+        </div>
+    );
 };
 
 export default AddTask;
