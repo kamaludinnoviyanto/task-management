@@ -17,7 +17,7 @@ function TaskList({ tasks, onDelete, onEdit }) {
                     className="task-list-item flex justify-between items-center p-4 bg-white rounded-lg shadow-sm mb-2"
                 >
                     <div className="task-details flex-grow">
-                        <h3 className="text-xl font-semibold">Judul Tugas : {task.title}</h3>
+                        <h3 className="text-xl font-semibold">Judul : {task.title}</h3>
                         <p>Deskripsi Tugas : {task.description}</p>
                     </div>
                     <div className="task-actions flex items-center space-x-4">
